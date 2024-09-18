@@ -24,7 +24,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='slothyTools-c',
+    name='slothyTools-v1a',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
