@@ -1,3 +1,4 @@
+# This is a compile-ready version of v1a version of slothyTools.py
 # Python Standard Library
 import os
 import sys
