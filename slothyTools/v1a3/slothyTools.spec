@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-# pyinstaller slothyTools-v1a2r.spec
+version = 'v1a3'
 
 from PyInstaller.utils.hooks import collect_data_files
 datas = collect_data_files('pyfiglet', 'openpyxl')
@@ -25,7 +25,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='slothyTools-v1a2r',
+    name=f'slothyTools-{version}',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
