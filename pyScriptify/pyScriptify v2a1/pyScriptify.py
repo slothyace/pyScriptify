@@ -84,13 +84,16 @@ def fBrowser(console, function, scale):
 
         case "folderIndexsingle":
             folderPath=filedialog.askdirectory()
-            extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".")
+            if folderPath:
+                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".") or "*"
             if folderPath and extension:
                 psBaseFunc.consoleClear(console)
                 pyFunctions.createFolderIndex.single(console, folderPath, extension)
+
         case "folderIndexmulti":
             foldersPath=filedialog.askdirectory()
-            extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".")
+            if foldersPath:
+                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".") or "*"
             if foldersPath and extension:
                 psBaseFunc.consoleClear(console)
                 pyFunctions.createFolderIndex.multi(console, foldersPath, extension)
