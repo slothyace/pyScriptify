@@ -10,7 +10,6 @@ import webbrowser
 
 # CtmLib
 import pyFunctions
-import pyFunctions.askCsvToExcel
 import pyFunctions.baseFunctions.baseFunctions as psBaseFunc
 import pyFunctions.baseFunctions.modMan as modMan
 
