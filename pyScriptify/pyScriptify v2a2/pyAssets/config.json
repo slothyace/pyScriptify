@@ -1,18 +1,18 @@
 {
     "config": {
         "appName": "pyScriptify",
-        "version": "v2a1",
+        "version": "v2a2",
         "release": "alpha 0",
         "winY": "550",
         "license": "none",
         "font": "cascadia mono"
     },
     "hidden": {
-        "mJiggler": "True",
-        "graphr": "True",
-        "donate": "True"
+        "mJiggler": true,
+        "graphr": true,
+        "donate": true
     },
     "debugger": {
-        "pythonTerminal": "False"
+        "pythonTerminal": false
     }
 }
