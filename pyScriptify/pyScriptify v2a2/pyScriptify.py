@@ -25,7 +25,7 @@ os.system(f"cls")
 print(f"{pyfig.figlet_format(settings["config"]["appName"])}")
 print(settings[f"config"][f"version"])
 
-if settings["debugger"]["pythonTerminal"] == "False":
+if settings["debugger"]["pythonTerminal"] == False:
     if not sys.executable.endswith(f"pythonw.exe"):
         os.system(f"start pythonw.exe pyScriptify.py")
         print(f"Relaunching with pythonw...")
@@ -186,7 +186,7 @@ def GUI():
     def GUIdonateButton():
         ttk.Button(GUImain, text="Like this project? Sponsor me!", command=lambda: webbrowser.open("https://ko-fi.com/slothyacedia"), bootstyle="success").pack(padx=10, pady=10)
     
-    if settings["hidden"]["donate"] != "True":
+    if settings["hidden"]["donate"] != True:
         GUIdonateButton()
     
 
