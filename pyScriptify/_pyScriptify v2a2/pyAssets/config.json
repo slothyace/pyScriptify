@@ -10,7 +10,7 @@
     "hidden": {
         "mJiggler": true,
         "graphr": true,
-        "donate": true
+        "donate": false
     },
     "debugger": {
         "pythonTerminal": false
