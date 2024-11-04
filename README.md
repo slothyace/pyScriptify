@@ -1,5 +1,5 @@
 # pyScriptify
-Just a collection of office tasks automations
+Just a collection of office task automations
 
 # Announcements
 - v2a1 has been released!
