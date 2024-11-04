@@ -3,10 +3,10 @@
         "appName": "pyScriptify",
         "version": "v2a2",
         "release": "alpha 0",
-        "license": "NA"
+        "license": "MIT + Do No Evil Clause"
     },
     "config":{
-        "winY": "550",
+        "winY": "480",
         "font": "cascadia mono"
     },
     "hiddens":{
