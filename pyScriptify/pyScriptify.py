@@ -22,10 +22,10 @@ import pyfiglet as pyfig
 settings = json.load(open("pyAssets/config.json", "r"))
 os.system("cls")
 print(f"{pyfig.figlet_format(settings["appInfo"]["appName"])}")
-print(settings[f"appInfo"][f"version"])
+print(settings["appInfo"]["version"])
 
 if not settings["debugger"]["pyTerminal"]:
-    if not sys.executable.endswith(f"pythonw.exe"):
+    if not sys.executable.endswith("pythonw.exe"):
         os.system("start pythonw.exe pyScriptify.py")
         print("Relaunching with pythonw...")
         time.sleep(1)
@@ -83,7 +83,7 @@ def fBrowser(console, function, scale):
         case "folderIndexsingle":
             folderPath=filedialog.askdirectory()
             if folderPath:
-                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".") or "*"
+                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(".") or "*"
             if folderPath and extension:
                 psBaseFunc.consoleClear(console)
                 pyFunctions.createFolderIndex.single(console, folderPath, extension)
@@ -91,17 +91,17 @@ def fBrowser(console, function, scale):
         case "folderIndexmulti":
             foldersPath=filedialog.askdirectory()
             if foldersPath:
-                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(f".") or "*"
+                extension=simpledialog.askstring("Extension filter", "csv, xlsx, mp3, etc. | * for wildcard").strip(".") or "*"
             if foldersPath and extension:
                 psBaseFunc.consoleClear(console)
                 pyFunctions.createFolderIndex.multi(console, foldersPath, extension)
 
-winY = int(settings[f"config"][f"winY"])
+winY = int(settings["config"]["winY"])
 winX = int(16/9*winY)
 
 def GUI():
-    GUImain = ttk.Window(themename=f"darkly")
-    GUImain.title(f"{settings[f"appInfo"][f"appName"]} Ver. {settings[f"appInfo"][f"version"]}")
+    GUImain = ttk.Window(themename="darkly")
+    GUImain.title(f"{settings["appInfo"]["appName"]} Ver. {settings["appInfo"]["version"]}")
     GUImain.geometry(f"{winX}x{winY}")
     GUImain.resizable(True, True)
     GUImain.minsize(winX, winY)
