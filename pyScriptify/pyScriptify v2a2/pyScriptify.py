@@ -21,13 +21,13 @@ import pyfiglet as pyfig
 
 settings = json.load(open("pyAssets/config.json", "r"))
 os.system("cls")
-print(f"{pyfig.figlet_format(settings["config"]["appName"])}")
-print(settings[f"config"][f"version"])
+print(f"{pyfig.figlet_format(settings["appInfo"]["appName"])}")
+print(settings[f"appInfo"][f"version"])
 
-if settings["debugger"]["pythonTerminal"] == False:
+if not settings["debugger"]["pythonTerminal"]:
     if not sys.executable.endswith(f"pythonw.exe"):
-        os.system(f"start pythonw.exe pyScriptify.py")
-        print(f"Relaunching with pythonw...")
+        os.system("start pythonw.exe pyScriptify.py")
+        print("Relaunching with pythonw...")
         time.sleep(1)
         sys.exit()
 
@@ -97,13 +97,11 @@ def fBrowser(console, function, scale):
                 pyFunctions.createFolderIndex.multi(console, foldersPath, extension)
 
 winY = int(settings[f"config"][f"winY"])
-winX = int(1.5*winY)
-
-
+winX = int(16/9*winY)
 
 def GUI():
     GUImain = ttk.Window(themename=f"darkly")
-    GUImain.title(f"{settings[f"config"][f"appName"]} Ver. {settings[f"config"][f"version"]}")
+    GUImain.title(f"{settings[f"appInfo"][f"appName"]} Ver. {settings[f"appInfo"][f"version"]}")
     GUImain.geometry(f"{winX}x{winY}")
     GUImain.resizable(True, True)
     GUImain.minsize(winX, winY)
@@ -113,11 +111,10 @@ def GUI():
         global topFrame
         topFrame = ttk.LabelFrame(GUImain, bootstyle="success")
         topFrame.pack(pady=(0,10), padx=10, fill="x")
-        ttk.Label(topFrame, text=pyfig.figlet_format(settings["config"]["appName"]), font=(settings["config"]["font"], 8)).pack(padx=10)
-        ttk.Label(topFrame, text=(f"Version: {settings["config"]["version"]}"), font=(settings["config"]["font"], 8)).pack(side="right", padx=10)
+        ttk.Label(topFrame, text=pyfig.figlet_format(settings["appInfo"]["appName"]), font=(settings["config"]["font"], 8)).pack(padx=10)
+        ttk.Label(topFrame, text=(f"Version: {settings["appInfo"]["version"]}"), font=(settings["config"]["font"], 8)).pack(side="right", padx=10)
+        ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
     GUImainBanner()
-
-    ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
 
     def GUImainButtons():
         buttonFrame = ttk.Frame(GUImain)
@@ -128,44 +125,43 @@ def GUI():
         csvToExcelBtn["menu"] = csvToExcelMenu
         csvToExcelMenu.add_command(label="File", command=lambda: fBrowser(console, function="csvToExcel", scale="single"))
         csvToExcelMenu.add_command(label="Folder", command=lambda: fBrowser(console, function="csvToExcel", scale="multi"))
-        csvToExcelMenu.add_command(label="Info", command= lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string=f"Converts a CSV file to an Excel file.")))
+        csvToExcelMenu.add_command(label="Info", command= lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string="Converts a CSV file to an Excel file.")))
 
         excelToCsvBtn = ttk.Menubutton(buttonFrame, text="Excel -> CSV", bootstyle="success", width=15)
         excelToCsvMenu = ttk.Menu(excelToCsvBtn)
         excelToCsvBtn["menu"] = excelToCsvMenu
         excelToCsvMenu.add_command(label="File", command=lambda: fBrowser(console, function="excelToCsv", scale="single"))
         excelToCsvMenu.add_command(label="Folder", command=lambda: fBrowser(console, function="excelToCsv", scale="multi"))
-        excelToCsvMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string=f"Converts an excel file to a CSV file.")))
+        excelToCsvMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string="Converts an excel file to a CSV file.")))
 
         splitExcelBtn = ttk.Menubutton(buttonFrame, text="Split Excel", bootstyle="success", width=15)
         splitExcelMenu = ttk.Menu(splitExcelBtn)
         splitExcelBtn["menu"] = splitExcelMenu
         splitExcelMenu.add_command(label="File", command=lambda: fBrowser(console, function="splitExcel", scale="single"))
         splitExcelMenu.add_command(label="Folder", command=lambda: fBrowser(console, function="splitExcel", scale="multi"))
-        splitExcelMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string=f"Splits an excel workbook's sheets into individual excel files.")))
+        splitExcelMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string="Splits an excel workbook's sheets into individual excel files.")))
 
         mergeExcelBtn = ttk.Menubutton(buttonFrame, text="Merge Excel", bootstyle="success", width=15)
         mergeExcelMenu = ttk.Menu(mergeExcelBtn)
         mergeExcelBtn["menu"] = mergeExcelMenu
         mergeExcelMenu.add_command(label="Single", command=lambda: fBrowser(console, function="mergeExcel", scale="single"))
         mergeExcelMenu.add_command(label="Multi", command=lambda: fBrowser(console, function="mergeExcel", scale="multi"))
-        mergeExcelMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string=f"Merges multiple excel files into sheets in 1 excel workbook.")))
+        mergeExcelMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string="Merges multiple excel files into sheets in 1 excel workbook.")))
 
         folderIndexBtn = ttk.Menubutton(buttonFrame, text="List Folder Files", bootstyle="success", width=15)
         folderIndexMenu = ttk.Menu(folderIndexBtn)
         folderIndexBtn["menu"] = folderIndexMenu
         folderIndexMenu.add_command(label="Single", command=lambda: fBrowser(console, function="folderIndex", scale="single"))
         folderIndexMenu.add_command(label="Multi", command=lambda: fBrowser(console, function="folderIndex", scale="multi"))
-        folderIndexMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string=f"Produces a .txt file containing the names of the files inside the folder.")))
+        folderIndexMenu.add_command(label="Info", command=lambda: (psBaseFunc.consoleClear(console), psBaseFunc.consolePrint(console, string="Produces a .txt file containing the names of the files inside the folder.")))
 
         csvToExcelBtn.grid(row=0, column=0, padx=2, pady=2)
         excelToCsvBtn.grid(row=1, column=0, padx=2, pady=2)
         splitExcelBtn.grid(row=0, column=1, padx=2, pady=2)
         mergeExcelBtn.grid(row=1, column=1, padx=2, pady=2)
         folderIndexBtn.grid(row=0, column=3, rowspan=2, sticky="NESW", padx=2, pady=2)
+        ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
     GUImainButtons()
-
-    ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
 
     def GUImainConsole():
         global console
@@ -174,18 +170,18 @@ def GUI():
 
         console = ttk.Text(consoleFrame, wrap=tk.WORD, width=1, height=1, font=(settings["config"]["font"], 12))
         console.pack(pady=0, padx=10, fill="both", expand=True)
-        console.insert(tk.END, f"Welcome to {settings["config"]["appName"]}.")
+        console.insert(tk.END, f"Welcome to {settings["appInfo"]["appName"]}.")
 
         consoleClearBtn = ttk.Button(consoleFrame, text="Clear Console", command=lambda: psBaseFunc.consoleClear(console), bootstyle="success", width=20)
         consoleClearBtn.pack(pady=(0,10), padx=10, fill="x", expand=False)
+        ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
     GUImainConsole()
-
-    ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
 
     def GUIdonateButton():
         ttk.Button(GUImain, text="Like this project? Sponsor me!", command=lambda: webbrowser.open("https://ko-fi.com/slothyacedia"), bootstyle="success").pack(padx=10, pady=10)
+        ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
     
-    if settings["hidden"]["donate"] != True:
+    if not settings["hiddens"]["donate"]:
         GUIdonateButton()
     
 
