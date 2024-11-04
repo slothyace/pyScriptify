@@ -1,8 +1,7 @@
 # StdLib
 import tkinter as tk
-from tkinter import filedialog, messagebox, simpledialog
+from tkinter import filedialog, simpledialog
 import os
-import subprocess
 import sys
 import time
 import json
@@ -20,8 +19,8 @@ import ttkbootstrap as ttk
 import ttkbootstrap.constants as ttkconstants
 import pyfiglet as pyfig
 
-settings = json.load(open(f"pyAssets/config.json", f"r"))
-os.system(f"cls")
+settings = json.load(open("pyAssets/config.json", "r"))
+os.system("cls")
 print(f"{pyfig.figlet_format(settings["config"]["appName"])}")
 print(settings[f"config"][f"version"])
 
@@ -114,8 +113,8 @@ def GUI():
         global topFrame
         topFrame = ttk.LabelFrame(GUImain, bootstyle="success")
         topFrame.pack(pady=(0,10), padx=10, fill="x")
-        ttk.Label(topFrame, text=pyfig.figlet_format(settings["config"]["appName"]), font=(settings['config']['font'], 8)).pack(padx=10)
-        ttk.Label(topFrame, text=(f"Version: {settings["config"]["version"]}"), font=(settings['config']['font'], 8)).pack(side="right", padx=10)
+        ttk.Label(topFrame, text=pyfig.figlet_format(settings["config"]["appName"]), font=(settings["config"]["font"], 8)).pack(padx=10)
+        ttk.Label(topFrame, text=(f"Version: {settings["config"]["version"]}"), font=(settings["config"]["font"], 8)).pack(side="right", padx=10)
     GUImainBanner()
 
     ttk.Separator(GUImain, bootstyle="success", orient="horizontal").pack(fill="x")
@@ -173,7 +172,7 @@ def GUI():
         consoleFrame = ttk.LabelFrame(GUImain, bootstyle="success", text=" Console ")
         consoleFrame.pack(pady=(0,10), padx=10, fill="both", expand=True)
 
-        console = ttk.Text(consoleFrame, wrap=tk.WORD, width=1, height=1, font=(settings['config']['font'], 12))
+        console = ttk.Text(consoleFrame, wrap=tk.WORD, width=1, height=1, font=(settings["config"]["font"], 12))
         console.pack(pady=0, padx=10, fill="both", expand=True)
         console.insert(tk.END, f"Welcome to {settings["config"]["appName"]}.")
 
