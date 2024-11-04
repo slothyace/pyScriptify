@@ -24,7 +24,7 @@ os.system("cls")
 print(f"{pyfig.figlet_format(settings["appInfo"]["appName"])}")
 print(settings[f"appInfo"][f"version"])
 
-if not settings["debugger"]["pythonTerminal"]:
+if not settings["debugger"]["pyTerminal"]:
     if not sys.executable.endswith(f"pythonw.exe"):
         os.system("start pythonw.exe pyScriptify.py")
         print("Relaunching with pythonw...")
