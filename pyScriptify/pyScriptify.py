@@ -74,6 +74,7 @@ def fBrowser(console, function, scale):
             if folderPath:
                 psBaseFunc.consoleClear(console)
                 pyFunctions.askMergeExcel.single(console, folderPath)
+                
         case "mergeExcelmulti":
             foldersPath=filedialog.askdirectory()
             if foldersPath:
